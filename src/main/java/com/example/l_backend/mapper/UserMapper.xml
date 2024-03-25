@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.l_backend.mapper.UserMapper">
+
+    <select id="getUserVOByName" resultMap="userVO">
+        select id, username, account, token
+        from user
+        where username = #{username}
+    </select>
+    <resultMap type="com.example.l_backend.VO.LeUserVO" id="userVO">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="account" column="account"/>
+        <result property="token" column="token"/>
+    </resultMap>
+
+
+</mapper>

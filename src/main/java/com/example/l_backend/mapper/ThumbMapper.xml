@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.l_backend.mapper.ThumbMapper">
+    <insert id="saveThumb" parameterType="com.example.l_backend.entity.thumb.Thumb">
+        insert into thumb (id, filename, name, remarks, shared, size, url)
+        values (#{id}, #{fileName}, #{name}, #{remarks}, #{shared}, #{size}, #{url})
+    </insert>
+
+    <select id="getThumbVOByName" resultMap="thumbVOMap">
+        select name, url
+        from thumb
+        where url = #{name}
+    </select>
+
+    <select id="getThumbVOById" resultMap="thumbVOMap">
+        select id, name, url, folder_id
+        from thumb
+        where id = #{id}
+    </select>
+
+    <select id="getAllThumbVOs" resultMap="thumbVOMap">
+        select id, url, name, folder_id
+        from thumb;
+    </select>
+
+    <select id="getThumbVOsByFId" parameterType="String" resultMap="thumbVOMap">
+        select name, url, component, id, folder_id
+        from thumb
+        where folder_id = #{fId}
+    </select>
+
+    <resultMap type="com.example.l_backend.entity.thumb.Thumb" id="thumbMap">
+        <id property="id" column="id"/>
+        <result property="url" column="url"/>
+        <result column="directory" property="directory"/>
+        <result column="name" property="name"/>
+        <result column="shared" property="shared"/>
+        <result column="size" property="size"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <resultMap id="thumbVOMap" type="com.example.l_backend.VO.ThumbVO">
+        <id property="id" column="id"/>
+        <result property="image" column="url"/>
+        <result property="name" column="name"/>
+        <result property="_id" column="folder_id"/>
+    </resultMap>
+</mapper>

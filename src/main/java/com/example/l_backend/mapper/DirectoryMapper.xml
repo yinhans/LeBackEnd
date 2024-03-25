@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.l_backend.mapper.DirectoryMapper">
+    <!--插入-->
+    <insert id="saveDir" parameterType="com.example.l_backend.entity.component.Directory">
+        insert into component_folder (id, uid, full_path)
+        values (#{id}, #{uId}, #{fullPath})
+    </insert>
+    <resultMap id="dirMap" type="com.example.l_backend.entity.component.Directory">
+        <id column="id" property="id"/>
+        <result column="uid" property="uId"/>
+        <result column="full_path" property="fullPath"/>
+        <result column="update_at" property="updateAt"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="update_at" property="updateAt"/>
+    </resultMap>
+</mapper>
